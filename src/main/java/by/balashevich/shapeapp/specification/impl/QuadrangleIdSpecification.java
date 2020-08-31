@@ -1,12 +1,12 @@
-package by.balashevich.shapeapp.repository.impl;
+package by.balashevich.shapeapp.specification.impl;
 
 import by.balashevich.shapeapp.entity.Quadrangle;
-import by.balashevich.shapeapp.repository.Specification;
+import by.balashevich.shapeapp.specification.Specification;
 
 public class QuadrangleIdSpecification implements Specification {
     private long quadrangleId;
 
-    public QuadrangleIdSpecification (long quadrangleId){
+    public QuadrangleIdSpecification(long quadrangleId) {
         this.quadrangleId = quadrangleId;
     }
 

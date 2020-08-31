@@ -23,6 +23,15 @@ public class Quadrangle extends Shape implements Observable {
         this.observer = new QuadrangleObserver();
     }
 
+    public Quadrangle(long id, Point pointA, Point pointB, Point pointC, Point pointD) {
+        super(id);
+        this.pointA = pointA;
+        this.pointB = pointB;
+        this.pointC = pointC;
+        this.pointD = pointD;
+        this.observer = new QuadrangleObserver();
+    }
+
     public Point getPointA() {
         return pointA;
     }
@@ -77,7 +86,7 @@ public class Quadrangle extends Shape implements Observable {
         Quadrangle quadrangle = (Quadrangle) obj;
 
         return super.equals(obj)
-                && pointA.equals(quadrangle.pointB)
+                && pointA.equals(quadrangle.pointA)
                 && pointB.equals(quadrangle.pointB)
                 && pointC.equals(quadrangle.pointC)
                 && pointD.equals(quadrangle.pointD);

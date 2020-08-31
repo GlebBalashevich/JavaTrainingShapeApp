@@ -9,16 +9,20 @@ public abstract class Shape {
         this.id = IdGenerator.generateId();
     }
 
+    public Shape(long id) {
+        this.id = id;
+    }
+
     public long getId() {
         return id;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj){
+        if (this == obj) {
             return true;
         }
-        if (obj == null || obj.getClass() != getClass()){
+        if (obj == null || obj.getClass() != getClass()) {
             return false;
         }
 

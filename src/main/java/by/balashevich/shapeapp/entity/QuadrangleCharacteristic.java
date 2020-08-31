@@ -1,6 +1,4 @@
-package by.balashevich.shapeapp.warehouse;
-
-import by.balashevich.shapeapp.entity.QuadrangleType;
+package by.balashevich.shapeapp.entity;
 
 public class QuadrangleCharacteristic {
     private double area;

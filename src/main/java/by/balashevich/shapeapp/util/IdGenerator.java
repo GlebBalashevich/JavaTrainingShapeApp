@@ -9,7 +9,7 @@ public class IdGenerator {
     private IdGenerator() {
     }
 
-    public static long generateId(){
+    public static long generateId() {
         id++;
 
         if (id > MAX_ID) {

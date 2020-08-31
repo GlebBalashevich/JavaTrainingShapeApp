@@ -4,5 +4,5 @@ public enum QuadrangleType {
     SQUARE,
     RHOMBUS,
     TRAPEZE,
-    UNKNOWN
+    ARBITRARY
 }

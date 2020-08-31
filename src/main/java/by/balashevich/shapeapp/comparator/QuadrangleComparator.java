@@ -4,7 +4,7 @@ import by.balashevich.shapeapp.entity.Quadrangle;
 
 import java.util.Comparator;
 
-public enum QuadrangleComparator{
+public enum QuadrangleComparator {
     ID((Quadrangle q1, Quadrangle q2) -> Long.compare(q1.getId(), q2.getId())),
     A_POINT_X_COORDINATE((Quadrangle q1, Quadrangle q2) -> Double.compare(q1.getPointA().getCoordinateX(),
             q2.getPointA().getCoordinateX())),
@@ -17,11 +17,11 @@ public enum QuadrangleComparator{
 
     private Comparator<Quadrangle> comparator;
 
-    QuadrangleComparator(Comparator<Quadrangle> comparator){
+    QuadrangleComparator(Comparator<Quadrangle> comparator) {
         this.comparator = comparator;
     }
 
-    public Comparator<Quadrangle> getComparator(){
+    public Comparator<Quadrangle> getComparator() {
         return comparator;
     }
 }

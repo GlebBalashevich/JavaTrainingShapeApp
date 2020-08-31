@@ -1,6 +1,6 @@
 package by.balashevich.shapeapp.exception;
 
-public class ShapeProjectException extends Exception{
+public class ShapeProjectException extends Exception {
     public ShapeProjectException() {
         super();
     }

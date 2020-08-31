@@ -1,5 +1,6 @@
 package by.balashevich.shapeapp.warehouse;
 
+import by.balashevich.shapeapp.entity.QuadrangleCharacteristic;
 import by.balashevich.shapeapp.exception.ShapeProjectException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -13,37 +14,26 @@ public class QuadrangleWarehouse {
     private static QuadrangleWarehouse instance;
     private Map<Long, QuadrangleCharacteristic> characteristicList;
 
-    private QuadrangleWarehouse (){
+    private QuadrangleWarehouse() {
         characteristicList = new HashMap<>();
     }
 
-    public static QuadrangleWarehouse getInstance(){
-        if (instance == null){
+    public static QuadrangleWarehouse getInstance() {
+        if (instance == null) {
             instance = new QuadrangleWarehouse();
         }
 
         return instance;
     }
 
-    public QuadrangleCharacteristic putCharacteristic(long id, QuadrangleCharacteristic parameters) throws ShapeProjectException {
-        QuadrangleCharacteristic placedCharacteristic = characteristicList.put(id, parameters);
-
-        if (placedCharacteristic == null){
-            throw new ShapeProjectException("Error while placing characteristic into warehouse");
-        }
-        logger.log(Level.INFO, "Quadrangle id {}, {} placed into warehouse", id, placedCharacteristic);
-
-        return characteristicList.put(id, parameters);
+    public void putCharacteristic(long id, QuadrangleCharacteristic parameters) {
+        characteristicList.put(id, parameters);
+        logger.log(Level.INFO, "Quadrangle id {}, {} placed into warehouse", id, parameters);
     }
 
-    public QuadrangleCharacteristic getCharacteristic(long id) throws ShapeProjectException {
-        QuadrangleCharacteristic quadrangleCharacteristic;
-
-        if (characteristicList.containsKey(id)){
-            quadrangleCharacteristic = characteristicList.get(id);
-        } else{
-            throw new ShapeProjectException("Error while selecting characteristic from warehouse"); // TODO: 19.08.2020 is it good to have exception there, not very usable
-        }
+    public QuadrangleCharacteristic getCharacteristic(long id) {
+        QuadrangleCharacteristic quadrangleCharacteristic = characteristicList.get(id);
+        ;
         logger.log(Level.INFO, "Quadrangle id {}, {} selected into warehouse", id, quadrangleCharacteristic);
 
         return quadrangleCharacteristic;
@@ -51,10 +41,6 @@ public class QuadrangleWarehouse {
 
     public QuadrangleCharacteristic removeCharacteristic(long id) throws ShapeProjectException {
         QuadrangleCharacteristic removedCharacteristic = characteristicList.remove(id);
-
-        if (removedCharacteristic == null){
-            throw new ShapeProjectException("Error while removing characteristic from warehouse");
-        }
         logger.log(Level.INFO, "Quadrangle id {}, {} removed from warehouse", id, removedCharacteristic);
 
         return removedCharacteristic;

@@ -17,13 +17,13 @@ public class QuadrangleValidator {
 
         if (!pointA.equals(pointB) && !pointB.equals(pointC) && !pointC.equals(pointD)) {
             double abcLeftEquationPart = (pointA.getCoordinateX() - pointC.getCoordinateX())
-                    / (pointB.getCoordinateX() - pointC.getCoordinateX());
-            double abcRightEquationPart = (pointA.getCoordinateY() - pointC.getCoordinateY())
-                    / (pointB.getCoordinateY() - pointC.getCoordinateY());
+                    * (pointB.getCoordinateY() - pointC.getCoordinateY());
+            double abcRightEquationPart = (pointB.getCoordinateX() - pointC.getCoordinateX())
+                    * (pointA.getCoordinateY() - pointC.getCoordinateY());
             double acdLeftEquationPart = (pointA.getCoordinateX() - pointD.getCoordinateX())
-                    / (pointC.getCoordinateX() - pointD.getCoordinateX());
-            double acdRightEquationPart = (pointA.getCoordinateY() - pointD.getCoordinateY())
-                    / (pointC.getCoordinateY() - pointD.getCoordinateY());
+                    * (pointC.getCoordinateY() - pointD.getCoordinateY());
+            double acdRightEquationPart = (pointC.getCoordinateX() - pointD.getCoordinateX())
+                    * (pointA.getCoordinateY() - pointD.getCoordinateY());
             if (abcLeftEquationPart != abcRightEquationPart && acdLeftEquationPart != acdRightEquationPart) {
                 isExist = true;
             }

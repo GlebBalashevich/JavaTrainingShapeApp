@@ -16,12 +16,12 @@ public class PointCreator {
     public List<Point> createPoints(List<Double> pointsData) throws ShapeProjectException {
         List<Point> pointList = new ArrayList<>();
 
-        if (pointsData != null && !pointsData.isEmpty()) {
-            for (int i = 0; i < pointsData.size() - 1; i+= 2) {
+        if (pointsData != null && !pointsData.isEmpty() && pointsData.size() % 2 == 0) {
+            for (int i = 0; i < pointsData.size() - 1; i += 2) {
                 Optional<Point> point = createPoint(pointsData.get(i), pointsData.get(i + 1));
                 point.ifPresent(pointList::add);
             }
-        } else{
+        } else {
             throw new ShapeProjectException("Incorrect data for points creation");
         }
 

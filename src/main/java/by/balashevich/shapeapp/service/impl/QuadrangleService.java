@@ -31,7 +31,7 @@ public class QuadrangleService implements ShapeService<Quadrangle> {
 
             area = abcTriangleArea + acdTriangleArea;
             logger.log(Level.INFO, "quadrangle {} area is {}", quadrangle.getId(), area);
-        } else{
+        } else {
             logger.log(Level.INFO, "quadrangle {} area can t be counted", quadrangle.getId());
         }
 
@@ -54,30 +54,21 @@ public class QuadrangleService implements ShapeService<Quadrangle> {
     public boolean isQuadrangleConvex(Quadrangle quadrangle) {
         boolean isConvex = false;
 
-        double abSide = calculateSegment(quadrangle.getPointA(), quadrangle.getPointB());
-        double bcSide = calculateSegment(quadrangle.getPointB(), quadrangle.getPointC());
-        double cdSide = calculateSegment(quadrangle.getPointC(), quadrangle.getPointD());
-        double daSide = calculateSegment(quadrangle.getPointD(), quadrangle.getPointA());
+        double pointCIndexAB = calculatePointIndex(quadrangle.getPointA(), quadrangle.getPointB(), quadrangle.getPointC());
+        double pointDIndexAB = calculatePointIndex(quadrangle.getPointA(), quadrangle.getPointB(), quadrangle.getPointC());
+        double pointBIndexAD = calculatePointIndex(quadrangle.getPointA(), quadrangle.getPointD(), quadrangle.getPointB());
+        double pointCIndexAD = calculatePointIndex(quadrangle.getPointA(), quadrangle.getPointD(), quadrangle.getPointC());
 
-        if (abSide != cdSide) {
-            if (quadrangle.getPointA().getCoordinateY() == quadrangle.getPointB().getCoordinateY()
-                    && quadrangle.getPointC().getCoordinateY() == quadrangle.getPointD().getCoordinateY()) {
-                isConvex = true;
-            }
+        if (pointCIndexAB > 0 && pointDIndexAB > 0 && pointBIndexAD < 0 && pointCIndexAD < 0) {
+            isConvex = true;
+            logger.log(Level.INFO, "quadrangle {} is convex: {}", quadrangle.getId(), isConvex);
         }
-        if (bcSide != daSide) {
-            if (quadrangle.getPointA().getCoordinateX() == quadrangle.getPointD().getCoordinateX()
-                    && quadrangle.getPointB().getCoordinateX() == quadrangle.getPointC().getCoordinateX()) {
-                isConvex = true;
-            }
-        }
-        logger.log(Level.INFO, "quadrangle {} is convex: {}", quadrangle.getId(), isConvex);
 
         return isConvex;
     }
 
     public QuadrangleType determineQuadrangleType(Quadrangle quadrangle) {
-        QuadrangleType type = QuadrangleType.UNKNOWN;
+        QuadrangleType type = QuadrangleType.ARBITRARY;
 
         double abSide = calculateSegment(quadrangle.getPointA(), quadrangle.getPointB());
         double bcSide = calculateSegment(quadrangle.getPointB(), quadrangle.getPointC());
@@ -120,5 +111,10 @@ public class QuadrangleService implements ShapeService<Quadrangle> {
         double y2 = point2.getCoordinateY();
 
         return Math.hypot((x1 - x2), (y1 - y2));
+    }
+
+    private double calculatePointIndex(Point segmentPoint1, Point segmentPoint2, Point point3) {
+        return (point3.getCoordinateX() - segmentPoint1.getCoordinateX()) * (segmentPoint2.getCoordinateY() - segmentPoint1.getCoordinateY()) -
+                (point3.getCoordinateY() - segmentPoint1.getCoordinateY()) * (segmentPoint2.getCoordinateX() - segmentPoint1.getCoordinateX());
     }
 }

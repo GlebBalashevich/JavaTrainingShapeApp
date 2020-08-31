@@ -11,7 +11,7 @@ public class PointValidator {
         return testData.matches(POINT_VALUE);
     }
 
-    public boolean isPointCoordinatesCorrect(double coordinateX, double coordinateY){
+    public boolean isPointCoordinatesCorrect(double coordinateX, double coordinateY) {
 
         return (coordinateX >= MIN_FLATNESS_VALUE && coordinateX <= MAX_FLATNESS_VALUE)
                 && (coordinateY >= MIN_FLATNESS_VALUE && coordinateY <= MAX_FLATNESS_VALUE);

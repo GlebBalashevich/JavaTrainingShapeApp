@@ -1,4 +1,4 @@
-package by.balashevich.shapeapp.repository;
+package by.balashevich.shapeapp.specification;
 
 import by.balashevich.shapeapp.entity.Quadrangle;
 
