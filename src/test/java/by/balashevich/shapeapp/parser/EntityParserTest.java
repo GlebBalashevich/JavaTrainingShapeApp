@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class EntityParserTest {
     EntityParser entityParser;
 
     @BeforeTest
-    public void setUp(){
+    public void setUp() {
         entityParser = new EntityParser();
     }
 
@@ -38,7 +38,7 @@ public class EntityParserTest {
     }
 
     @DataProvider(name = "quadrangleData")
-    public Object[][] createQuadrangleData(){
+    public Object[][] createQuadrangleData() {
         return new Object[][]{
                 {"1.0 2.0; 3.0 4.0; 5.0 6.0; 7.0 8.0", new ArrayList<>(Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0))},
                 {"1.0 2.0; 3.0 4.0;", new ArrayList<>()},
@@ -46,7 +46,8 @@ public class EntityParserTest {
                 {"-1.0a -2.0b; -3.0c -4.0d; -5.0 -6.0; -7.0 -8.0", new ArrayList<>()}
         };
     }
-    @Test (dataProvider = "quadrangleData")
+
+    @Test(dataProvider = "quadrangleData")
     public void parseQuadrangleTest(String quadrangleTextData, List<Double> expected) {
         List<Double> actual = entityParser.parseQuadrangle(quadrangleTextData);
 
@@ -54,13 +55,14 @@ public class EntityParserTest {
     }
 
     @DataProvider(name = "pointData")
-    public Object[][] createPointData(){
-        return new Object[][] {
+    public Object[][] createPointData() {
+        return new Object[][]{
                 {"4.0 7.0", new ArrayList<>(Arrays.asList(4.0, 7.0))},
                 {"-4.0 167.0", new ArrayList<>(Arrays.asList(-4.0, 167.0))},
                 {"0.0 0.0", new ArrayList<>(Arrays.asList(0.0, 0.0))},
         };
     }
+
     @Test(dataProvider = "pointData")
     public void parsePointTest(String pointTextData, List<Double> expected) throws ShapeProjectException {
         List<Double> actual = entityParser.parsePoint(pointTextData);

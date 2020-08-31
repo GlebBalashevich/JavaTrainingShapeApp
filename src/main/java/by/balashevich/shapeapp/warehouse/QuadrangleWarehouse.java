@@ -33,15 +33,14 @@ public class QuadrangleWarehouse {
 
     public QuadrangleCharacteristic getCharacteristic(long id) {
         QuadrangleCharacteristic quadrangleCharacteristic = characteristicList.get(id);
-        ;
-        logger.log(Level.INFO, "Quadrangle id {}, {} selected into warehouse", id, quadrangleCharacteristic);
+        logger.log(Level.INFO, "Quadrangle id {}, {} selected from the warehouse", id, quadrangleCharacteristic);
 
         return quadrangleCharacteristic;
     }
 
     public QuadrangleCharacteristic removeCharacteristic(long id) throws ShapeProjectException {
         QuadrangleCharacteristic removedCharacteristic = characteristicList.remove(id);
-        logger.log(Level.INFO, "Quadrangle id {}, {} removed from warehouse", id, removedCharacteristic);
+        logger.log(Level.INFO, "Quadrangle id {}, {} removed from the warehouse", id, removedCharacteristic);
 
         return removedCharacteristic;
     }

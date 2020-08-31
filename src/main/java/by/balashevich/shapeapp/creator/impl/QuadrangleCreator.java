@@ -29,7 +29,7 @@ public class QuadrangleCreator implements ShapeCreator<Quadrangle> {
                 quadrangle.ifPresent(quadrangleList::add);
             }
         } else {
-            throw new ShapeProjectException();
+            throw new ShapeProjectException("error while creating quadrangles");
         }
 
         return quadrangleList;
@@ -54,7 +54,7 @@ public class QuadrangleCreator implements ShapeCreator<Quadrangle> {
                     optionalQuadrangle = Optional.of(quadrangle);
                     repository.add(quadrangle);
                     quadrangle.notifyObserver();
-                    logger.log(Level.INFO, String.format("%s added to Repository", quadrangle));
+                    logger.log(Level.INFO, "{} added to Repository", quadrangle);
                 }
             }
         } catch (ShapeProjectException e) {

@@ -3,15 +3,12 @@ package by.balashevich.shapeapp.creator;
 import by.balashevich.shapeapp.entity.Point;
 import by.balashevich.shapeapp.exception.ShapeProjectException;
 import by.balashevich.shapeapp.validator.PointValidator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class PointCreator {
-    private static Logger logger = LogManager.getLogger();
 
     public List<Point> createPoints(List<Double> pointsData) throws ShapeProjectException {
         List<Point> pointList = new ArrayList<>();

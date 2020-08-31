@@ -41,7 +41,6 @@ public class QuadrangleService implements ShapeService<Quadrangle> {
     @Override
     public double calculatePerimeter(Quadrangle quadrangle) {
         double perimeter = 0;
-
         perimeter += calculateSegment(quadrangle.getPointA(), quadrangle.getPointB());
         perimeter += calculateSegment(quadrangle.getPointB(), quadrangle.getPointC());
         perimeter += calculateSegment(quadrangle.getPointC(), quadrangle.getPointD());
@@ -53,7 +52,6 @@ public class QuadrangleService implements ShapeService<Quadrangle> {
 
     public boolean isQuadrangleConvex(Quadrangle quadrangle) {
         boolean isConvex = false;
-
         double pointCIndexAB = calculatePointIndex(quadrangle.getPointA(), quadrangle.getPointB(), quadrangle.getPointC());
         double pointDIndexAB = calculatePointIndex(quadrangle.getPointA(), quadrangle.getPointB(), quadrangle.getPointC());
         double pointBIndexAD = calculatePointIndex(quadrangle.getPointA(), quadrangle.getPointD(), quadrangle.getPointB());
@@ -61,15 +59,14 @@ public class QuadrangleService implements ShapeService<Quadrangle> {
 
         if (pointCIndexAB > 0 && pointDIndexAB > 0 && pointBIndexAD < 0 && pointCIndexAD < 0) {
             isConvex = true;
-            logger.log(Level.INFO, "quadrangle {} is convex: {}", quadrangle.getId(), isConvex);
         }
+        logger.log(Level.INFO, "quadrangle {} is convex: {}", quadrangle.getId(), isConvex);
 
         return isConvex;
     }
 
     public QuadrangleType determineQuadrangleType(Quadrangle quadrangle) {
         QuadrangleType type = QuadrangleType.ARBITRARY;
-
         double abSide = calculateSegment(quadrangle.getPointA(), quadrangle.getPointB());
         double bcSide = calculateSegment(quadrangle.getPointB(), quadrangle.getPointC());
         double cdSide = calculateSegment(quadrangle.getPointC(), quadrangle.getPointD());

@@ -17,13 +17,13 @@ public class ShapeDataReader {
 
     public List<String> readFileData(String filename) throws ShapeProjectException {
         List<String> dataLines;
-        logger.log(Level.INFO, filename);
 
         try (Stream<String> lineStream = Files.lines(Paths.get(filename))) {
             dataLines = lineStream.collect(Collectors.toList());
         } catch (IOException e) {
             throw new ShapeProjectException("Exception while opening file", e);
         }
+        logger.log(Level.INFO, "{} red successfully", filename);
 
         return dataLines;
     }
